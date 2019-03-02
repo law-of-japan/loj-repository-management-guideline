@@ -4,7 +4,7 @@
 
 ## Contributing
 
-このプロジェクトに参加するには、まずCONTRIBUTING.mdをご一読ください。
+このプロジェクトに参加するには、まず[CONTRIBUTING.md](CONTRIBUTING.md)をご一読ください。
 
 ## License
 
