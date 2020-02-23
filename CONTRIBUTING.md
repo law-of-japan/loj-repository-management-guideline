@@ -17,6 +17,8 @@
 
 種別
 
+- 憲法\
+  constitution
 - 法律\
   law
 - 条約\
