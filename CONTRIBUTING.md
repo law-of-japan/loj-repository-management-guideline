@@ -24,6 +24,8 @@
   law
 - 条約\
   treaty
+- 勅令\
+  imperialOrdinance
 - 政令\
   governmentOrdinance
 - 府令\
