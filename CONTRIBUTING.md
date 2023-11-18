@@ -22,8 +22,6 @@
   constitution
 - 法律\
   act
-- 条約\
-  treaty
 - 勅令\
   imperialOrder
 - 政令\
