@@ -105,4 +105,4 @@ if __name__ == "__main__":
         print(chunked_list[i])
         user_input = input("input binary like this: 01001010 >>>")
         result_int += textToInt(user_input) << i*8
-    print(numpy.base_repr(result_int, 32))
+    print(numpy.base_repr(result_int, 36))
