@@ -58,7 +58,7 @@
   - 条文が章分けされていない法律の場合は、chapterX.mdではなく、代わりにarticle.mdというファイル名を用います。
 - supplementary_provision.md
   - 附則がある場合は、このファイルにまとめて記述します。
-- annexed_table.md
+- appendix_table.md
   - 別表がある場合は、このファイルに記載します。
 - preamble.md
   - 法律に前文がある場合は、このファイルに記載します。
