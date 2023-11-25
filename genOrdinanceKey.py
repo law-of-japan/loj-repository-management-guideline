@@ -1,16 +1,14 @@
 # -*- coding: utf-8 -*-
 from more_itertools import chunked
-import base64
-import math
+import numpy
 
 def textToInt(string):
     if len(string) > 8:
-        print("ERROR! chunked stirng length must be shorter than 8")
+        print("ERROR! chunked string length must be shorter than 8")
     elif len(string) < 8:
         string += "0"*(8-len(string))
     res_int = 0
     lis = list(string)
-    lis.reverse()
     for i in range(0, len(lis)):
         if lis[i] == "1":
             res_int += 2**i
@@ -96,7 +94,7 @@ input binary like this: 01001010 >>>
 
 これと同じような質問が数回繰り返されますので、それぞれ答えてください。
 最後に、英数字の文字列が表示されます。それがキーになりますのでリポジトリ名に含めてください。
-リポジトリ名は、日付-ordinance-キー-府省令番号のような形式です。
+リポジトリ名は、日付-ministerialOrdinance-キー-府省令番号のような形式です。
 詳細はCONTRIBUTING.mdを参照してください。
 """
 if __name__ == "__main__":
@@ -107,5 +105,4 @@ if __name__ == "__main__":
         print(chunked_list[i])
         user_input = input("input binary like this: 01001010 >>>")
         result_int += textToInt(user_input) << i*8
-    b32encoded_key = base64.b32encode(result_int.to_bytes(7, byteorder="little"))
-    print(b32encoded_key.decode().rstrip("="))
+    print(numpy.base_repr(result_int, 36))
