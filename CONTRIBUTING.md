@@ -102,7 +102,7 @@
 | `glyphs.yaml` | `loj-glyphs/v1alpha1` | [loj-glyphs/v1alpha1](https://github.com/law-of-japan/loj-spec/blob/main/spec/loj-glyphs/v1alpha1/01-glyphs.md) |
 | `rebuild.yaml` | `loj-rebuild/v1alpha1` | [loj-rebuild/v1alpha1](https://github.com/law-of-japan/loj-spec/blob/main/spec/loj-rebuild/v1alpha1/01-rebuild.md) |
 
-このリポジトリのexample1、example2は、従来の形式の例です。新しい形式の例としては使わないでください。
+`law.yaml`と本文のMarkdownの例は、仕様の[examples/fictional-law](https://github.com/law-of-japan/loj-spec/tree/main/examples/fictional-law)を参照してください。
 
 本文のMarkdownについて、注意すべきことは以下です。詳細と、以下にない事項は仕様に従ってください。
 
