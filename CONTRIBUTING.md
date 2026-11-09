@@ -45,7 +45,7 @@
 
 - 「YYYYMMDD-種別-番号」の形式で、YYYYMMDDは公布の日付、番号は法令番号等です。憲法のように法令番号がない場合は、YYYYMMDD-constitutionのように番号を書きません。
 - 種別は、憲法がconstitution、法律がact、勅令がimperialOrder、政令がcabinetOrder、府省令がministerialOrdinance、規則がruleです。
-- 府省令、規則等が細分される場合は「日付-種別-府省名等-番号」とし、府省名等のキーは同梱のgenOrdinanceKey.pyによって作成しています（例: 19470830-ministerialOrdinance-B8JK-23）。
+- 府省令、規則等が細分される場合は「日付-種別-府省名等-番号」とし、府省名等のキーは、発令機関の一覧の各機関に該当するかどうかをビット列にし、36進数で表したものです（例: 19470830-ministerialOrdinance-B8JK-23）。キーを作るスクリプトと機関の一覧は、もう使わないため削除しました。発令機関は、登録台帳のRecordに原記載のまま記録します。
 
 ## リポジトリの作成について
 
