@@ -13,7 +13,7 @@
 | `glyphs.yaml` | `loj-glyphs/v1alpha1` | [loj-glyphs/v1alpha1](https://github.com/law-of-japan/loj-spec/blob/main/spec/loj-glyphs/v1alpha1/01-glyphs.md) |
 | `rebuild.yaml` | `loj-rebuild/v1alpha1` | [loj-rebuild/v1alpha1](https://github.com/law-of-japan/loj-spec/blob/main/spec/loj-rebuild/v1alpha1/01-rebuild.md) |
 
-`law.yaml`と本文のMarkdownの例は、仕様の[examples/fictional-law](https://github.com/law-of-japan/loj-spec/tree/main/examples/fictional-law)を参照してください。
+`law.yaml`と本文のMarkdownの例は、`loj/v1alpha2`の[祝日法の制定時の版](https://github.com/law-of-japan/loj-spec/tree/main/conformance/loj-history/v1alpha1/valid/hist-001/repo/versions/98mj5vgx)を参照してください。履歴マニフェスト・字体注記・再構築報告を含む構成は、[法令リポジトリ全体の例](https://github.com/law-of-japan/loj-spec/tree/main/conformance/loj-history/v1alpha1/valid/hist-001/repo)で確認できます。
 
 本文のMarkdownについて、注意すべきことは以下です。詳細と、以下にない事項は仕様に従ってください。
 
