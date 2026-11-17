@@ -21,6 +21,63 @@
 - `loj/v1alpha1`は凍結した版です。新しいデータを`loj/v1alpha1`で書かないでください。
 - 従来の形式（このガイドラインの以前の版に従ったもの）の既存の法令リポジトリは、原典から作り直して新しい形式へ移します。手順は[従来の形式の既存のリポジトリを移すとき](docs/migrating-legacy-repositories.md)を参照してください。ただし、既存の法令リポジトリの移行は、仕様の検査器ができてから始めます。検査器がないと、移したデータが仕様に適合することを確かめられないためです。
 
+## データの全体像
+
+このプロジェクトで使う主な言葉の関係を、図で示します。図は仕様の要約です。仕様と食い違う場合は仕様に従ってください（定めは[CORE-01](https://github.com/law-of-japan/loj-spec/blob/main/spec/common/v1alpha1/01-overview.md#core-01-データの構成)、[CORE-02](https://github.com/law-of-japan/loj-spec/blob/main/spec/common/v1alpha1/01-overview.md#core-02-ファイルの種類とschemaversion)等）。言葉の意味は、仕様の[用語集](https://github.com/law-of-japan/loj-spec/blob/main/docs/glossary.md)で引けます。
+
+### リポジトリとファイル
+
+```mermaid
+flowchart LR
+  subgraph registry["登録台帳のリポジトリ"]
+    rec["records/#lt;Record ID#gt;.yaml<br>Record（一つの法令）"]
+  end
+  subgraph repo["法令リポジトリ"]
+    subgraph main["mainブランチ（正本）"]
+      hist["history.yaml<br>履歴マニフェスト"]
+      reb["rebuild.yaml<br>再構築報告"]
+      subgraph ver["versions/#lt;revision_id#gt;/"]
+        pkg["law.yamlと本文のMarkdown<br>版パッケージ"]
+        gly["glyphs.yaml<br>字体注記"]
+      end
+    end
+    view["historyブランチ等<br>派生ビュー"]
+  end
+  rec -- "repositoryで指す" --> repo
+  hist -- "revision_idで指す" --> ver
+  main -- "生成器が作る（一方向）" --> view
+```
+
+- 一つの法令を、登録台帳の一つのRecordで同定します。Recordは、Record IDで指します。題名や法令番号では指しません。
+- 一つのRecordの履歴を、一つの法令リポジトリに置きます。法令の各時点の状態（Revision）は`history.yaml`に並べ、本文はRevisionごとの版パッケージ（`versions/<revision_id>/`）に置きます。
+- 再構築報告（`rebuild.yaml`）は、従来の形式の既存のリポジトリから移したRecordにだけあります。
+- 正本はmainブランチのデータです。`history`ブランチ等の派生ビューは正本から生成器が作るもので、人が編集せず、判断の根拠にもしません（[`history`ブランチ（派生ビュー）](docs/committing-and-merging.md#historyブランチ派生ビュー)）。
+
+### 版と記録版
+
+「版」に当たる言葉は三つあり、それぞれ別のものです。
+
+```mermaid
+flowchart LR
+  subgraph c1["記録版1"]
+    a1["Revision 7k2m9q4x<br>制定時の状態"]
+  end
+  subgraph c2["記録版2"]
+    b2["Revision 98mj5vgx<br>改正後の状態"] -- "basedOn" --> a2["Revision 7k2m9q4x"]
+  end
+  subgraph c3["記録版3"]
+    b3["Revision 98mj5vgx"] -- "basedOn" --> a3["Revision 7k2m9q4x<br>転記の誤りを直した"]
+  end
+  c1 -- "revisionAddのコミット" --> c2
+  c2 -- "correctionのコミット" --> c3
+```
+
+図の横の並びはmainブランチのコミットの順で、枠の一つ一つが、そのコミットの時点の記録版です。
+
+- **版**（Revision）は、法令の一つの状態です。改正があると、新しいRevisionを`revisionAdd`で加えます。Revisionの順は、施行日ではなく`basedOn`（直前の状態）で表します。どの改正で成立したかは、`history.yaml`の関係（`relations`）を`basis`で指して記録します。
+- **記録版**は、mainブランチのあるコミットの時点での記録の内容です。転記の誤りの訂正（`correction`）や官報正誤（`officialCorrection`）は、Revisionを増やさずに記録版を更新します。mainブランチのGitの履歴は記録の変更の履歴であり、法令の改正の履歴ではありません（[コミットポリシー](docs/committing-and-merging.md#コミットポリシー)）。
+- **仕様の版**は、ファイルの形式の版（`schemaVersion`。`loj/v1alpha2`等）です。法令の状態とは関係がありません。
+
 ## 文字保存方針
 
 2026年11月7日決定。基礎データは原典の文字情報を保存する正本とし、固有名詞に限らず法令本文全体に適用します。
